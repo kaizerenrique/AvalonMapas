@@ -86,6 +86,6 @@ class Mapas extends Component
         ]);        
          
         $this->modalAgregar = false;
-        session()->flash('message', 'La categoría se a creado correctamente'); 
+        session()->flash('message', 'El Mapa ha sido registrado correctamente.'); 
     }
 }
