@@ -44,6 +44,11 @@
             <!-- Seccion de imagen principal del mapa -->
             <div>
                 <h3 class="font-semibold text-lg dark:text-gray-100">Detalles del Mapa</h3>
+                @if ($imagen)
+                    <div class="col-span-2 sm:col-span-4 md:col-span-4">
+                        <img class="mb-4 w-full" src="{{ $imagen->temporaryUrl() }}" alt="">
+                    </div>
+                @endif
                 <div class="flex items-center justify-center w-full">
                     <label for="dropzone-file"
                         class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
@@ -66,12 +71,42 @@
                 </div>
             </div>
             <!-- / Seccion de imagen principal del mapa -->
-            
+
+            <div class="mt-4">
+                <x-label for="name" value="{{ __('Nombre del Mapa') }}" />
+                <x-input class="block mt-1 w-full" type="text" wire:model.defer="name" required />
+
+            </div>
+
+            <div class="mt-4">
+                <x-label for="name" value="{{ __('Nivel del Mapa') }}" />
+                <select wire:model.defer="nivel"
+                    class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                    <option value="" selected>Seleccionar</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
+                <x-label for="name" value="{{ __('Tipo del Mapa') }}" />
+                <select wire:model.defer="tipo"
+                    class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                    <option value="" selected>Seleccionar</option>
+                    <option value="Cruce">Cruce</option>
+                    <option value="Corredor">Corredor</option>
+                    <option value="Santuario">Santuario</option>
+                    <option value="Descanso">Descanso</option>
+                </select>
+            </div>
         </x-slot>
 
         <x-slot name="footer">
             <div class="px-4 py-2 m-2">
-                <x-secondary-button wire:click="$toggle('modalAgregar')" wire:loading.attr="disabled">
+                <x-secondary-button wire:click="guardarmapa()" wire:loading.attr="disabled">
                     Agregar
                 </x-secondary-button>
             </div>

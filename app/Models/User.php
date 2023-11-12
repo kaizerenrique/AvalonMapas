@@ -58,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+    * Relación con tabla de Mapas.
+    * Usuario registra mapas. 
+    */
+
+    public function mapas()
+    {
+        return $this->hasMany(Mapa::class);
+    }
 }
