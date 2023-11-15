@@ -40,11 +40,13 @@ class Mapas extends Component
     public function render()
     {
 
-        //$mapas_avalon = Mapa::where('name', 'like', '%'.$this->buscar . '%')  //buscar por nombre                           
-        //                    ->orderBy('id','desc') //ordenar de forma decendente
-        //                    ->paginate(10); //paginacion
+        $mapas = Mapa::where('name', 'like', '%'.$this->buscar . '%')  //buscar por nombre                           
+                            ->orderBy('id','desc') //ordenar de forma decendente
+                            ->paginate(2); //paginacion
 
-        return view('livewire.mapas');
+        return view('livewire.mapas',[
+            'mapas' => $mapas
+        ]);
     }
 
     /**
