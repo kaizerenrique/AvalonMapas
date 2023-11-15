@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Vermapas;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,7 @@ Route::middleware([
     Route::get('/mapas', function () {
         return view('mapas');
     })->name('mapas');
+
+    Route::get('/mapas/{slug}', Vermapas::class)->name('vermapas');
 });
+

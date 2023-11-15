@@ -101,10 +101,11 @@ class Mapas extends Component
      * Consultar si se borrara el Mapa 
      * 
      */
-    public function consultarborrarmapa(Mapa $mapa)
+    public function consultarborrarmapa($id)
     {
-        $this->mensajemapa = $mapa->name;
-        $this->idmapa = $mapa->id;
+        $ma = Mapa::find($id);
+        $this->mensajemapa = $ma->name;
+        $this->idmapa = $ma->id;
         $this->confirmarEliminarMapa = true;
     }
 
@@ -112,8 +113,9 @@ class Mapas extends Component
     * Borrar el Mapa 
     * 
     */
-    public function borrarmapa( Mapa $mapa)
+    public function borrarmapa( $id)
     {
+        $mapa = Mapa::find($id);
         $this->confirmarEliminarMapa = false;
         session()->flash('message', 'Se a eliminado correctamente el Mapa: '.$mapa->name);
         

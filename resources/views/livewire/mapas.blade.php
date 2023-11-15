@@ -41,6 +41,10 @@
                 <thead>
                     <tr class="dark:bg-gray-800 dark:text-gray-100 uppercase text-sm leading-normal">
                         <th class="py-3 px-6 text-left">Nombre</th>
+                        <th class="py-3 px-6 text-left">Nivel</th>
+                        <th class="py-3 px-6 text-left">Tipo</th>
+                        <th class="py-3 px-6 text-left">Registrado</th>
+                        <th class="py-3 px-6 text-left">Última Actualización</th>
                         <th class="py-3 px-6 text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -48,29 +52,33 @@
                     @foreach ($mapas as $mapa)
                         <tr class="border-b border-gray-200 hover:bg-gray-600 dark:text-gray-100">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
-                                
-                                  <div class="flex items-center">
-                                    <div class="mr-2">
-                                      <img class="w-12 h-12 rounded-full" src="{{ $mapa->foto_mapa }}" />
-                                    </div>
-                                    <span>{{ $mapa->name }}</span>
-                                  </div>                 
-                                                          
-                              </td>
+                                {{ $mapa->name }}
+                            </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
-                               {{$mapa->name}}
+                                {{ $mapa->nivel }}
+                            </td>
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                {{ $mapa->tipo }}
+                            </td>
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                {{ $mapa->created_at }}
+                            </td>
+                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                                {{ $mapa->updated_at }}
                             </td>
                             <td class="py-3 px-6 text-center">
                                 <div class="flex item-center justify-center">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                                         wire:click="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                        </svg>
+                                        <a href="{{route('vermapas',$mapa->slug)}}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                        </a>
                                     </div>
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                                         wire:click="">
@@ -81,7 +89,7 @@
                                         </svg>
                                     </div>
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-                                        wire:click="consultarborrarmapa({{$mapa->id}})">
+                                        wire:click="consultarborrarmapa({{ $mapa->id }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -191,17 +199,19 @@
         <x-slot name="title">
             Borrar Mapa
         </x-slot>
-    
+
         <x-slot name="content">
-            ¿Estás seguro de que quieres eliminar el mapa {{ $mensajemapa }}? Una vez que se elimine el mapa, todos los datos se eliminarán permanentemente.
+            ¿Estás seguro de que quieres eliminar el mapa {{ $mensajemapa }}? Una vez que se elimine el mapa, todos
+            los datos se eliminarán permanentemente.
         </x-slot>
-    
+
         <x-slot name="footer">
             <x-secondary-button wire:click="$toggle('confirmarEliminarMapa')" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
-    
-            <x-danger-button class="ml-2" wire:click="borrarmapa({{ $idmapa }})" wire:loading.attr="disabled">
+
+            <x-danger-button class="ml-2" wire:click="borrarmapa({{ $idmapa }})"
+                wire:loading.attr="disabled">
                 Borrar Mapa
             </x-danger-button>
         </x-slot>
