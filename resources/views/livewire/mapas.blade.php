@@ -71,7 +71,7 @@
                                         </svg>
                                     </div>
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-                                        wire:click="">
+                                        wire:click="consultarborrarmapa({{$mapa->id}})">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -90,6 +90,7 @@
             {{ $mapas->links() }}
         </div>
     </div>
+    <!-- / Tabla -->
 
     <!-- Seccion que contiene el modal para agregar el mapa -->
     <x-dialog-modal wire:model="modalAgregar">
@@ -175,5 +176,25 @@
         </x-slot>
     </x-dialog-modal>
     <!-- / Seccion que contiene el modal para agregar el mapa -->
+
+    <x-confirmation-modal wire:model="confirmarEliminarMapa">
+        <x-slot name="title">
+            Borrar Mapa
+        </x-slot>
+    
+        <x-slot name="content">
+            ¿Estás seguro de que quieres eliminar el mapa {{ $mensajemapa }}? Una vez que se elimine el mapa, todos los datos se eliminarán permanentemente.
+        </x-slot>
+    
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$toggle('confirmarEliminarMapa')" wire:loading.attr="disabled">
+                Cancelar
+            </x-secondary-button>
+    
+            <x-danger-button class="ml-2" wire:click="borrarmapa({{ $idmapa }})" wire:loading.attr="disabled">
+                Borrar Mapa
+            </x-danger-button>
+        </x-slot>
+    </x-confirmation-modal>
 
 </div>

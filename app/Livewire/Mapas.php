@@ -16,10 +16,12 @@ class Mapas extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $modalAgregar = false;  
+    public $modalAgregar = false;
+    public $confirmarEliminarMapa = false;  
     public $buscar;
     public $name, $nivel, $tipo;
     public $imagen;
+    public $mensajemapa, $idmapa;
 
     protected function rules()
     {
@@ -42,7 +44,7 @@ class Mapas extends Component
 
         $mapas = Mapa::where('name', 'like', '%'.$this->buscar . '%')  //buscar por nombre                           
                             ->orderBy('id','desc') //ordenar de forma decendente
-                            ->paginate(2); //paginacion
+                            ->paginate(10); //paginacion
 
         return view('livewire.mapas',[
             'mapas' => $mapas
@@ -54,7 +56,11 @@ class Mapas extends Component
      * un mapa
      */
     public function agregarmapa()
-    {        
+    {
+        $this->reset(['name']);
+        $this->reset(['nivel']);
+        $this->reset(['tipo']); 
+        $this->reset(['imagen']);           
         $this->modalAgregar = true;
     }
 
@@ -90,4 +96,32 @@ class Mapas extends Component
         $this->modalAgregar = false;
         session()->flash('message', 'El Mapa ha sido registrado correctamente.'); 
     }
+
+    /**
+     * Consultar si se borrara el Mapa 
+     * 
+     */
+    public function consultarborrarmapa(Mapa $mapa)
+    {
+        $this->mensajemapa = $mapa->name;
+        $this->idmapa = $mapa->id;
+        $this->confirmarEliminarMapa = true;
+    }
+
+    /**
+    * Borrar el Mapa 
+    * 
+    */
+    public function borrarmapa( Mapa $mapa)
+    {
+        $this->confirmarEliminarMapa = false;
+        session()->flash('message', 'Se a eliminado correctamente el Mapa: '.$mapa->name);
+        
+        if(!empty($mapa->foto_mapa)){
+            $url = str_replace('storage','public',$mapa->foto_mapa);
+            Storage::delete($url);
+        }                
+
+        $mapa->delete(); 
+    }   
 }
