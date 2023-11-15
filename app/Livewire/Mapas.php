@@ -44,7 +44,7 @@ class Mapas extends Component
 
         $mapas = Mapa::where('name', 'like', '%'.$this->buscar . '%')  //buscar por nombre                           
                             ->orderBy('id','desc') //ordenar de forma decendente
-                            ->paginate(10); //paginacion
+                            ->paginate(8); //paginacion
 
         return view('livewire.mapas',[
             'mapas' => $mapas
