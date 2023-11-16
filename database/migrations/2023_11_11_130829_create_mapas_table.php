@@ -18,6 +18,9 @@ return new class extends Migration
             $table->enum('tipo',['Cruce' , 'Corredor' , 'Santuario' , 'Descanso'])->nullable(); //tipo de mapa
             $table->string('foto_mapa', 2048)->nullable();
             $table->string('slug');// slug para rutas
+            $table->string('inicio');// inicio del horario de guerra
+            $table->string('fin');// fin del horario de guerra
+            $table->boolean('visible')->default(false)->nullable();//estado de del mapa
 
             $table->foreignId('user_id') // UNSIGNED BIG INT
                     ->nullable() // <-- IMPORTANTE: LA COLUMNA DEBE ACEPTAR NULL COMO VALOR VALIDO

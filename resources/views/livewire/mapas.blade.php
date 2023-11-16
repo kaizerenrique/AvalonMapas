@@ -70,7 +70,7 @@
                                 <div class="flex item-center justify-center">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                                         wire:click="">
-                                        <a href="{{route('vermapas',$mapa->slug)}}">
+                                        <a href="{{ route('vermapas', $mapa->slug) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -177,6 +177,75 @@
                     <option value="Santuario">Santuario</option>
                     <option value="Descanso">Descanso</option>
                 </select>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 sm:grid-cols-4">
+                <div class="">
+                    <x-label for="name" value="{{ __('Inicio del horario') }}" />
+                    <select wire:model.defer="inicio"
+                        class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="00:00">00:00</option>
+                        <option value="01:00">01:00</option>
+                        <option value="02:00">02:00</option>
+                        <option value="03:00">03:00</option>
+                        <option value="04:00">04:00</option>
+                        <option value="05:00">05:00</option>
+                        <option value="06:00">06:00</option>
+                        <option value="07:00">07:00</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        <option value="23:00">23:00</option>                        
+                    </select>
+                </div>
+                <div class="ml-4">
+                    <x-label for="name" value="{{ __('Fin del horario') }}" />
+                    <select wire:model.defer="fin"
+                        class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="00:00">00:00</option>
+                        <option value="01:00">01:00</option>
+                        <option value="02:00">02:00</option>
+                        <option value="03:00">03:00</option>
+                        <option value="04:00">04:00</option>
+                        <option value="05:00">05:00</option>
+                        <option value="06:00">06:00</option>
+                        <option value="07:00">07:00</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        <option value="23:00">23:00</option>                        
+                    </select>
+                </div>
+                <div class="ml-4">
+                    <x-label for="name" value="{{ __('Mapa publico ?') }}" />
+                    <x-checkbox name="visible" id="visible" wire:model.defer="visible"  required />
+                </div>
             </div>
         </x-slot>
 

@@ -20,6 +20,9 @@ class Mapa extends Model
         'tipo',
         'foto_mapa',
         'slug',
+        'inicio',
+        'fin',
+        'visible'
     ];
 
     public function user(){

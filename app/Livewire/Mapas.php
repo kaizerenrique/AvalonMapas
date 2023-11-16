@@ -19,7 +19,7 @@ class Mapas extends Component
     public $modalAgregar = false;
     public $confirmarEliminarMapa = false;  
     public $buscar;
-    public $name, $nivel, $tipo;
+    public $name, $nivel, $tipo, $inicio, $fin, $visible;
     public $imagen;
     public $mensajemapa, $idmapa;
 
@@ -31,6 +31,9 @@ class Mapas extends Component
                 'nivel' => 'required|in:4,5,6,7,8',
                 'tipo' => 'required|in:Cruce,Corredor,Santuario,Descanso',
                 'imagen' => 'nullable|image|max:2048',
+                'inicio' => 'string',
+                'fin' => 'string',
+                'visible' => 'boolean',
             ];
         }        
     }
@@ -60,7 +63,10 @@ class Mapas extends Component
         $this->reset(['name']);
         $this->reset(['nivel']);
         $this->reset(['tipo']); 
-        $this->reset(['imagen']);           
+        $this->reset(['imagen']);  
+        $this->reset(['inicio']);
+        $this->reset(['fin']); 
+        $this->visible = true;          
         $this->modalAgregar = true;
     }
 
@@ -91,6 +97,9 @@ class Mapas extends Component
             'tipo' => $this->tipo,
             'slug' => $game,
             'foto_mapa' => $imagen_ruta,
+            'inicio' => $this->inicio,
+            'fin' => $this->fin,
+            'visible' => $this->visible,
         ]);        
          
         $this->modalAgregar = false;
