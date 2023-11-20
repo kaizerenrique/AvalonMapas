@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mapa extends Model
+class Gremio extends Model
 {
     use HasFactory;
 
@@ -15,24 +15,9 @@ class Mapa extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'nivel',
-        'tipo',
-        'foto_mapa',
-        'slug',
-        'inicio',
-        'fin',
-        'visible'
+        'id_albion_gremio',
+        'nombre_gremio',
     ];
-
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
     /**
     * Relación con tabla de Escondite.
