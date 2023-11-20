@@ -103,7 +103,14 @@ class Mapas extends Component
         ]);        
          
         $this->modalAgregar = false;
-        session()->flash('message', 'El Mapa ha sido registrado correctamente.'); 
+
+        if ($this->tipo == 'Descanso' ) {
+            
+        } else {
+            session()->flash('message', 'El Mapa ha sido registrado correctamente.');
+        }
+        
+         
     }
 
     /**
