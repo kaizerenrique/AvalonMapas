@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('gremio_id') // UNSIGNED BIG INT
                     ->nullable() // <-- IMPORTANTE: LA COLUMNA DEBE ACEPTAR NULL COMO VALOR VALIDO
                     ->constrained()  // <-- DEFINE LA RESTRICCION DE LLAVE FORANEA
-                    ->onDelete('SET NULL')
+                    ->onDelete('cascade')
                     ->onUpdate('cascade');
             
             $table->foreignId('mapa_id') // UNSIGNED BIG INT

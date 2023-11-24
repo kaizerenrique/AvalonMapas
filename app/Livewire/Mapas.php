@@ -105,7 +105,7 @@ class Mapas extends Component
         $this->modalAgregar = false;
 
         if ($this->tipo == 'Descanso' ) {
-            
+            $this->redirectRoute('detallesmapas', $game);    
         } else {
             session()->flash('message', 'El Mapa ha sido registrado correctamente.');
         }

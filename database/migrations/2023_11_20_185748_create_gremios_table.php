@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('gremios', function (Blueprint $table) {
             $table->id();
-            $table->string('id_albion_gremio'); //id del gremio generado por albion
+            $table->string('id_albion_gremio')->unique(); //id del gremio generado por albion
             $table->string('nombre_gremio'); //nombre del gremio
             $table->timestamps();
         });

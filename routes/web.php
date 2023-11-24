@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Vermapas;
+use App\Livewire\Detallesmapas;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,6 @@ Route::middleware([
     })->name('mapas');
 
     Route::get('/mapas/{slug}', Vermapas::class)->name('vermapas');
+    Route::get('/detallesmapas/{slug}', Detallesmapas::class)->name('detallesmapas');
 });
 
