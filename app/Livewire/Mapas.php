@@ -30,7 +30,7 @@ class Mapas extends Component
                 'name' => 'required|string|min:4|max:30|unique:mapas,name',
                 'nivel' => 'required|in:4,5,6,7,8',
                 'tipo' => 'required|in:Cruce,Corredor,Santuario,Descanso',
-                'imagen' => 'nullable|image|max:2048',
+                'imagen' => 'nullable|image|max:12288',
                 'inicio' => 'string',
                 'fin' => 'string',
                 'visible' => 'boolean',
